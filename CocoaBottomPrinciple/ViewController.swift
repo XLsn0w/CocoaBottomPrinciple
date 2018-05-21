@@ -55,8 +55,9 @@ class ViewController: UIViewController {
         
         
         
-        let block = {(arr1:Array, arr:Array) -> Void in
-            return
+        let block = {(name : String, age : Int) in
+      
+            
         }
         
     }

@@ -11,8 +11,7 @@
 
 @implementation Teacher
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
 
@@ -20,8 +19,7 @@
     return self;
 }
 
-- (void)requestData:(void (^)(NSData *))block
-{
+- (void)requestData:(void (^)(NSData *))block {
     self.caseBlock = block;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

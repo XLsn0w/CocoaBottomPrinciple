@@ -30,8 +30,7 @@
     return  self;
 }
 
-- (void)handleTimer:(id)sender
-{
+- (void)handleTimer:(id)sender {
     NSLog(@"%@ say: Hi!", [self class]);
 }
 

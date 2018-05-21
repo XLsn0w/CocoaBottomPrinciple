@@ -8,6 +8,7 @@ typedef void(^XLBlock)(NSData *data);
 
 @property (nonatomic, copy) void(^case6Block)();
 
+@property (nonatomic, copy) XLBlock b;
 
 - (void)requestData:(void(^)(NSData *data))block;
 
