@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD46CCCF20B25C53009488A3 /* BlockReference.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46CCCE20B25C53009488A3 /* BlockReference.m */; };
+		CD46CCD220B26847009488A3 /* CircularReference.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46CCD120B26847009488A3 /* CircularReference.m */; };
+		CD46CCD720B26929009488A3 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46CCD320B26929009488A3 /* SecondViewController.m */; };
+		CD46CCD820B26929009488A3 /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46CCD520B26929009488A3 /* Teacher.m */; };
+		CD46CCDB20B270B2009488A3 /* CopyProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46CCDA20B270B2009488A3 /* CopyProperty.m */; };
 		CD4AE7C120AD1C6D005419D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4AE7C020AD1C6D005419D4 /* AppDelegate.swift */; };
 		CD4AE7C320AD1C6D005419D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4AE7C220AD1C6D005419D4 /* ViewController.swift */; };
 		CD4AE7C620AD1C6D005419D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4AE7C420AD1C6D005419D4 /* Main.storyboard */; };
@@ -21,6 +26,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD46CCCC20B25C53009488A3 /* CocoaBottomPrinciple-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CocoaBottomPrinciple-Bridging-Header.h"; sourceTree = "<group>"; };
+		CD46CCCD20B25C53009488A3 /* BlockReference.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockReference.h; sourceTree = "<group>"; };
+		CD46CCCE20B25C53009488A3 /* BlockReference.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockReference.m; sourceTree = "<group>"; };
+		CD46CCD020B26847009488A3 /* CircularReference.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircularReference.h; sourceTree = "<group>"; };
+		CD46CCD120B26847009488A3 /* CircularReference.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircularReference.m; sourceTree = "<group>"; };
+		CD46CCD320B26929009488A3 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		CD46CCD420B26929009488A3 /* Teacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Teacher.h; sourceTree = "<group>"; };
+		CD46CCD520B26929009488A3 /* Teacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teacher.m; sourceTree = "<group>"; };
+		CD46CCD620B26929009488A3 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		CD46CCD920B270B2009488A3 /* CopyProperty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CopyProperty.h; sourceTree = "<group>"; };
+		CD46CCDA20B270B2009488A3 /* CopyProperty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CopyProperty.m; sourceTree = "<group>"; };
 		CD4AE7BD20AD1C6D005419D4 /* CocoaBottomPrinciple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoaBottomPrinciple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD4AE7C020AD1C6D005419D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD4AE7C220AD1C6D005419D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +87,16 @@
 				CD4AE7D220AD1C91005419D4 /* CocoaBottomPrinciple.swift */,
 				CD65DAC920AECA83000994E5 /* CocoaBase.swift */,
 				CD65DACB20AED044000994E5 /* CocoaUI.swift */,
+				CD46CCCD20B25C53009488A3 /* BlockReference.h */,
+				CD46CCCE20B25C53009488A3 /* BlockReference.m */,
+				CD46CCD920B270B2009488A3 /* CopyProperty.h */,
+				CD46CCDA20B270B2009488A3 /* CopyProperty.m */,
+				CD46CCD020B26847009488A3 /* CircularReference.h */,
+				CD46CCD120B26847009488A3 /* CircularReference.m */,
+				CD46CCD620B26929009488A3 /* SecondViewController.h */,
+				CD46CCD320B26929009488A3 /* SecondViewController.m */,
+				CD46CCD420B26929009488A3 /* Teacher.h */,
+				CD46CCD520B26929009488A3 /* Teacher.m */,
 				CDC9C46120AD5F8A00C63B29 /* isa.jpg */,
 				CDC9C46320AD5F8F00C63B29 /* MutableCopy.png */,
 				CDC9C46520AD5F9800C63B29 /* KVO.png */,
@@ -78,6 +104,7 @@
 				CD4AE7C720AD1C70005419D4 /* Assets.xcassets */,
 				CD4AE7C920AD1C70005419D4 /* LaunchScreen.storyboard */,
 				CD4AE7CC20AD1C70005419D4 /* Info.plist */,
+				CD46CCCC20B25C53009488A3 /* CocoaBottomPrinciple-Bridging-Header.h */,
 			);
 			path = CocoaBottomPrinciple;
 			sourceTree = "<group>";
@@ -114,6 +141,7 @@
 				TargetAttributes = {
 					CD4AE7BC20AD1C6D005419D4 = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 0930;
 					};
 				};
 			};
@@ -157,10 +185,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD65DACC20AED044000994E5 /* CocoaUI.swift in Sources */,
+				CD46CCDB20B270B2009488A3 /* CopyProperty.m in Sources */,
+				CD46CCD220B26847009488A3 /* CircularReference.m in Sources */,
 				CD4AE7C320AD1C6D005419D4 /* ViewController.swift in Sources */,
 				CD4AE7D320AD1C91005419D4 /* CocoaBottomPrinciple.swift in Sources */,
+				CD46CCD720B26929009488A3 /* SecondViewController.m in Sources */,
 				CD65DACA20AECA83000994E5 /* CocoaBase.swift in Sources */,
+				CD46CCD820B26929009488A3 /* Teacher.m in Sources */,
 				CD4AE7C120AD1C6D005419D4 /* AppDelegate.swift in Sources */,
+				CD46CCCF20B25C53009488A3 /* BlockReference.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +337,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MS6RTU94VW;
 				INFOPLIST_FILE = CocoaBottomPrinciple/Info.plist;
@@ -313,6 +347,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ginlong.CocoaBottomPrinciple;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CocoaBottomPrinciple/CocoaBottomPrinciple-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -322,6 +358,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MS6RTU94VW;
 				INFOPLIST_FILE = CocoaBottomPrinciple/Info.plist;
@@ -331,6 +368,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ginlong.CocoaBottomPrinciple;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CocoaBottomPrinciple/CocoaBottomPrinciple-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

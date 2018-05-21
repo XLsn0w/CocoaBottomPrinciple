@@ -96,6 +96,7 @@ class CocoaBase: NSObject {
  weak 和 assign的不同点
  weak策略在属性所指的对象遭到摧毁时，系统会将weak修饰的属性对象的指针指向nil，在OC给nil发消息是不会有什么问题的；如果使用assign策略在属性所指的对象遭到摧毁时，属性对象指针还指向原来的对象，由于对象已经被销毁，这时候就产生了野指针，如果这时候在给此对象发送消息，很容造成程序奔溃
  assigin 可以用于修饰非OC对象,而weak必须用于OC对象
+ 
  @property 的本质是什么？
  @property其实就是在编译阶段由编译器自动帮我们生成ivar成员变量，getter方法，setter方法
  ivar、getter、setter是如何生成并添加到这个类中的？
