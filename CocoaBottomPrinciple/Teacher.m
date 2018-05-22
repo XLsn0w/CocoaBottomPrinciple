@@ -7,8 +7,6 @@
 
 @end
 
-
-
 @implementation Teacher
 
 - (instancetype)init {

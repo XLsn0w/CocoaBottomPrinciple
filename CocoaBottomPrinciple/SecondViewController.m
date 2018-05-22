@@ -11,8 +11,6 @@
 
 @end
 
-
-
 @implementation SecondViewController
 
 - (void)dealloc
@@ -71,8 +69,7 @@
 }
 
 //情况五：不泄露
-- (void)case5
-{
+- (void)case5 {
     NSLog(@"case 5 Click");
     Teacher *t = [[Teacher alloc] init];
     [t requestData:^(NSData *data) {
