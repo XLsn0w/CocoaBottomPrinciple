@@ -65,6 +65,48 @@ class ViewController: UIViewController {
         
         print(i)
         
+       var isShow:Bool = false;
+        isShow = true
+
+        guard isShow else {
+            print("xxx")
+            return
+        }
+        
+        var h = 0
+        
+        repeat {
+            
+           h+=1
+            
+            print(h)
+            
+        } while h < 10
+        
+
+
+        defer {
+            print("defer")
+        }
+        
+        
+        let houseAnimals : Set = ["?","?"]
+        let farmAnimals: Set = ["?","?","?","?","?"]
+        let cityAnimals: Set = ["?","?"]
+        
+        func min<T: Comparable>(_ a: T, _ b: T) -> T {
+            return a < b ? a: b
+        }
+        //这里一定要遵守 Comparable 协议，因为并不是所有的类型都具有“可比性”
+        
+        
+        let intArray = [1, 3, 5]
+        
+        let filterArr = intArray.filter {
+            return $0 > 1
+        }
+        print(filterArr)
+        
         //给局部变量加上__block关键字,则这个局部变量可以在block内部进行修改。
        
         /*
@@ -84,8 +126,7 @@ class ViewController: UIViewController {
         */
         
         DispatchQueue.main.async {
-            
-            
+
         }
     }
 
