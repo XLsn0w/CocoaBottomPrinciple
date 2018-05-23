@@ -686,6 +686,210 @@
 }
 
 /*
+
+二、GCD的使用方法
+1、使用步骤
+first:使用create或者系统方法创建一个queue
+
+second:使用dispatch_async(someQueue, ^{});执行多线程的block方法
+
+third:在上面多线程的block相应位置调用dispatch_async(dispatch_get_main_queue(), ^{});回到主线程进行操作
+
+fourth:如果queue时通过create创建的，使用dispatch_release(someQueue);进行释放
+
+
+2、代码示例
+dispatch_queue_t tempQueue = dispatch_queue_create("com.llz.gcd.temp", NULL);
+
+dispatch_async(tempQueue,
+               
+               ^{
+                   
+                   //do something
+                   
+                   dispatch_async(dispatch_get_main_queue(),
+                                  
+                                  ^{
+                                      
+                                      //do someting
+                                      
+                                  });
+                   
+               });
+
+dispatch_release(tempQueue);//因为是create出来的，所以需要release
+
+
+三、GCD的其他方法
+1、dispatch_after
+dispatch_after://在一个时间段后向某个queue中添加一个block方法
+
+
+
+dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)3*NSEC_PER_SEC);//可以获得一个距某个时间点相当时长的时间，第一个参数为开始时间，现在设置的为当前时间，第二个参数为时间流失的数值，现在是3s
+
+dispatch_after(time, dispatch_get_main_queue(),
+               
+               ^{
+                   
+                   NSLog(@"hello");
+                   
+               });//使用dispatch_after方法，在time后向主线程队列添加一个block方法
+
+注意:dispatch_after与performSelector:withObject:afterDelay:的区别，后者为相应时间后执行该方法；前者为相应时间后向队列添加方法，而这个方法并不一定立刻执行
+
+2、dispatch_group_t
+dispatch_group_t:多线程组，将一些queue，添加到这个中，可以实现监测这些queue全部完成的状态，如果为Serial就没有使用这个的必要了
+
+
+
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//创建queue
+
+dispatch_group_t group = dispatch_group_create();//创建group
+
+
+
+dispatch_group_async(group, queue, ^{});//向group中添加queue及其block方法，第一个参数为组名，第二个参数为queue名，第三个参数为block方法
+
+dispatch_group_async(group, queue, ^{});//向group中添加queue及其block方法
+
+dispatch_group_async(group, queue, ^{});//向group中添加queue及其block方法
+
+dispatch_group_async(group, queue, ^{});//向group中添加queue及其block方法
+
+
+
+dispatch_group_wait(group, DISPATCH_TIME_FOREVER);//可以通过wait方法设置监测时间，现在设置的是永远，也能用dispatch_time_t进行特定时间的设定
+
+dispatch_release(group);//因为是create出来的，所以需要release
+
+
+3、dispatch_barrier_async
+dispatch_barrier_async(someQueue, ^{}):用于在某些一些动作中插入一些动作，一般配合create出来的concurrent类型queue使用,Serial就没有使用这个的必要了
+
+
+
+dispatch_queue_t queue = dispatch_queue_create("", DISPATCH_QUEUE_CONCURRENT);
+
+
+
+dispatch_async(queue, ^{});
+
+dispatch_async(queue, ^{});
+
+dispatch_async(queue, ^{});
+
+dispatch_barrier_async(queue, ^{});//会将queue对应的block方法加入queue，并等此方法结束后再继续queue里的剩下block方法
+
+dispatch_async(queue, ^{});
+
+dispatch_async(queue, ^{});
+
+
+
+dispatch_release(queue);//因为是create出来的，所以需要release
+
+
+4、dispatch_sync
+
+
+dispatch_sync(someQueue, ^{})与dispatch_barrier_sync(someQueue, ^{})同步运行，会死锁，但是不要用在MainThread或者在非concurrent的本身queue里面进行自己的sync
+
+5、dispatch_apply
+dispatch_apply(10, someQueue, ^{}):用于将某个block代码块按指定次数重复追加到queue中，并等待这些block全部执行完毕，所以推荐用在async中
+
+
+
+NSArray *array = [NSArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"", nil];
+
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+dispatch_async(queue,
+               
+               ^{
+                   
+                   dispatch_apply(array.count, queue, ^(size_t index)//会将数组的长度作为次数，将block代码块添加到queue中，并等待其中所有block执行完毕
+                                  
+                                  {
+                                      
+                                      NSLog(@"%@",[array objectAtIndex:index]);
+                                      
+                                  });
+                   
+               });
+
+
+6、dispatch_suspend&dispatch_resume
+dispatch_suspend(someQueue)&dispatch_resume(someQueue):用于将挂起时queue中尚未执行的处理停止以及继续开始
+
+7、dispatch_semaphore_t
+dispatch_semaphore_t:计数信号，为了更细分的保证不会造成程序的变量被同时访问
+
+
+
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+
+
+dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);//初始化semaphore的计数，并设最大为1
+
+NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+
+
+
+for(int i = 0;i<10000;i++)//在循环中如果不用semaphore，则async出来的线程们可能会同时访问array，造成异常
+
+{
+    
+    dispatch_async(queue,
+                   
+                   ^{
+                       
+                       dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);//第一个参数为技术信号，第二个参数为等待时间，现在是一直等待直到semaphore的值等于1
+                       
+                       
+                       
+                       [array addObject:[NSNumber numberWithInt:i]];//排他成功后，即semaphore等于1时，执行数组添加对象操作，同时将semaphore值变为0
+                       
+                       
+                       
+                       dispatch_semaphore_signal(semaphore);//将semaphore的值增为1
+                       
+                   });
+    
+}
+
+dispatch_release(semaphore);//因为是create出来的，所以需要release
+
+
+8、dispatch_once_t
+dispatch_once_t:保证其block块在应用中只执行一次
+
+
+
++(GCDViewController *)sharedInstance {
+    
+    static GCDViewController *sharedManager;
+    
+    static dispatch_once_t onceToken;//通过这个onceToken使得下面的实例化只做一次
+    
+    dispatch_once(&onceToken, ^{
+        
+        sharedManager = [[MyClass alloc] init];
+        
+    });
+    
+    
+    
+    return sharedManager;
+    
+}
+
+
+
+
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

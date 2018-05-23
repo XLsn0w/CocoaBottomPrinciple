@@ -54,12 +54,39 @@ class ViewController: UIViewController {
 //        var o: (String, Array) = ("xx", ['1', '2', '2'])
         
         
-        
+        var i = 10;
+
         let block = {(name : String, age : Int) in
       
-            
+            i = 90
         }
         
+        block("11", 3)
+        
+        print(i)
+        
+        //给局部变量加上__block关键字,则这个局部变量可以在block内部进行修改。
+       
+        /*
+         
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSLog(@"=================1");
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                NSLog(@"=================2");
+                });
+            NSLog(@"=================3");
+            });
+        NSLog(@"==========阻塞主线程");
+        while (1) {
+        }
+        NSLog(@"========2==阻塞主线程");
+         
+        */
+        
+        DispatchQueue.main.async {
+            
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
