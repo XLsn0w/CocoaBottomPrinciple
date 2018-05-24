@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         print(i)
         
        var isShow:Bool = false;
-        isShow = true
+//        isShow = true
 
         guard isShow else {
             print("xxx")

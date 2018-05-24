@@ -19,8 +19,6 @@
  
  众所周知，ARC下用block会产生循环引用的问题，造成泄露的原因是啥呢？
  
- 最简单的例子，如下面代码：
- 
  [self.teacher requestData:^(NSData *data) {
  self.name = @"case";
  }];
